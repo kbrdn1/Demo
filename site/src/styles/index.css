@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    font-family: Poppins;
+    text-align: center;
+}
+
+h1 {
+    text-decoration: underline 2px orange;
+}
+
+.passworderror, .pseudoerror, .emailerror {
+    color: red;
+}
+form {
+    width: max-content;
+    margin: auto;
+    padding: 2rem;
+    border: 2px solid grey;
+    border-top: none;
+    border-bottom: none;
+}
