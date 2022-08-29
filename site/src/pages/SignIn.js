@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 const SignIn = () => {
   const [user, setUser] = useState(null);
@@ -8,7 +10,7 @@ const SignIn = () => {
   const emailError = document.querySelector(".emailerror");
   const passwordError = document.querySelector(".passworderror");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     axios
@@ -23,13 +25,16 @@ const SignIn = () => {
           emailError.innerHTML = res.data.errors.email;
           passwordError.innerHTML = res.data.errors.password;
         } else {
-          
           axios
             .get(`${process.env.REACT_APP_API_URL}/api/user/${res.data.user}`, {
               withCredentials: true,
             })
             .then((res) => {
               setUser(res.data);
+              cookies.set("userConnect", user._id, {
+                maxAge: 3600,
+              });
+              window.location = "/profile";
             })
             .catch((err) => console.log("No token" + err));
         }
@@ -65,8 +70,6 @@ const SignIn = () => {
         <br />
         <button type="submit">Valider</button>
       </form>
-
-      {user ? <p>Utilisateur conneté: {user.pseudo}</p> : null}
     </div>
   );
 };

@@ -20,20 +20,23 @@ const AllUsers = () => {
 
   return (
     <div>
-      <h2>Utilisateurs: </h2>
-      <ul>
-        {users.map((user) => (
-          <li key={user._id}>
-            <p>
-              <span>pseudo: </span> {user.pseudo}
-            </p>
-
-            <p>
-              <span>email: </span> {user.email}
-            </p>
-          </li>
-        ))}
-      </ul>
+      {users ? (
+        <>
+          <h2>Utilisateurs: </h2>
+          <ul>
+            {users.map((user) => (
+              <li key={user._id}>
+                <p>
+                  <span>pseudo: </span> {user.pseudo}
+                </p>
+                <p>
+                  <span>email: </span> {user.email}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : null}
     </div>
   );
 };
