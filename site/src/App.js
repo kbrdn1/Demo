@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     if (uid === null) setUid(cookies.get("userConnect"));
 
-    if (uid) axios
+    axios
       .get(`${process.env.REACT_APP_API_URL}/api/user/${uid}`, {
         withCredentials: true,
       })

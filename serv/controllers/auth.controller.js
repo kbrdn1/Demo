@@ -29,7 +29,3 @@ module.exports.signIn = async (req, res) => {
     res.status(200).json({ errors });
   }
 };
-
-module.exports.logout = (req, res) => {
-  res.redirect("/");
-};

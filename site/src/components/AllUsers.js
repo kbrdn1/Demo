@@ -18,6 +18,21 @@ const AllUsers = () => {
       });
   }, [users]);
 
+    const deleteUser = (id) => {
+        if (window.confirm("Voulez-vous vraiment supprimer cet utilisateur ?")) {
+            axios
+                .delete(`${process.env.REACT_APP_API_URL}/api/user/${id}`, {
+                    withCredentials: true,
+                })
+                .then((res) => {
+                    console.log(res.data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+  };
+
   return (
     <div>
       {users ? (
@@ -32,6 +47,9 @@ const AllUsers = () => {
                 <p>
                   <span>email: </span> {user.email}
                 </p>
+                <button className="red" onClick={() => deleteUser(user._id)}>
+                  Delete
+                </button>
               </li>
             ))}
           </ul>
